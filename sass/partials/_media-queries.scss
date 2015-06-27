@@ -1,0 +1,48 @@
+/*
+ * Media Queries
+ */
+/*
+ * 1368
+*/
+@include mediaQ($C3) {
+
+}
+/*
+ * 1200
+ */
+@include mediaQ($XL) {
+
+}
+/*
+ * 1024
+ */
+@include mediaQ($L) {
+
+
+}
+/*
+ * Custom 900
+ */
+@include mediaQ($C1) {
+
+}
+
+/*
+ * 768
+ */
+@include mediaQ($M) {
+
+}
+/*
+ * 660
+ */
+
+@include mediaQ($C2) {
+
+} 
+/*
+ * 480
+ */
+@include mediaQ($S) {
+
+}

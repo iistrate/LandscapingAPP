@@ -1,0 +1,19 @@
+﻿/*
+    *Main Content
+*/
+div[role=main] {
+    padding:70px 0;
+    background-color: $light;
+    h1 {
+        font-size: 30px;
+        text-align: center;
+        font-weight: 400;
+        color:$dark;
+    }
+}
+.login {
+    text-align: center;
+    a {
+        @include button("simple", "push", 5px, 1.2rem, $blue);
+    }
+}

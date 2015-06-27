@@ -1,0 +1,24 @@
+/*
+	*Header
+*/
+header[role=banner] {
+    @extend .padding;
+    @include clearfix;
+    h1 {
+        float: left;
+        a {
+            text-decoration: none;
+            color: $light;
+        }
+    }
+    nav {
+        li {
+            margin-left: 20px;
+            float: left;
+            a {
+                @include button("simple", "push", 5px, 1rem, $red);
+            }
+        }
+        float: right;
+    }
+}
