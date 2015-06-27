@@ -44,5 +44,9 @@ div[role=main] {
             z-index:9999;
             position: relative;
         }
+        a {
+            display: block;
+            overflow: hidden;
+        }
     }
 }

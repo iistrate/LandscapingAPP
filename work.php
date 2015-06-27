@@ -25,17 +25,17 @@
         <div class="container">
             <article class="services">
                 <h1>Pick Service:</h1>
-                <section data-service="plant-trimming">
-                	<h2><a href="#"><span hidden>Plant trimming</span> <img src="images/icons/plant_trimming.png" alt="Plant Trimming" /></a></h2>
+                <section>
+                	<h2><a href="#" data-service="plant-trimming" class="test"><span hidden>Plant trimming</span> <img src="images/icons/plant_trimming.png" alt="Plant Trimming" /></a></h2>
                 </section>
-                <section data-service="garbage-pickup">
-                	<h2><a href="#"><span hidden>Leaf and garbage pickup</span> <img src="images/icons/garbage_pickup.png" alt="Garbage and Leaf Picku[" /></a></h2>
+                <section>
+                	<h2><a href="#" data-service="garbage-pickup"><span hidden>Leaf and garbage pickup</span> <img src="images/icons/garbage_pickup.png" alt="Garbage and Leaf Picku[" /></a></h2>
                 </section>
-                <section data-service="dead-plant-replacement">
-                	<h2><a href="#"><span hidden>Dead plant replacement</span> <img src="images/icons/dead_plant_replacement.png" alt="Dead Plant Replacement" /></a></h2>
+                <section>
+                	<h2><a href="#" data-service="dead-plant-replacement"><span hidden>Dead plant replacement</span> <img src="images/icons/dead_plant_replacement.png" alt="Dead Plant Replacement" /></a></h2>
                 </section>
-                <section data-service="weed-spraying">
-                	<h2><a href="#"><span hidden>Weed spraying</span> <img src="images/icons/weed_spraying.png" alt="Weed Spraying" /></a></h2>
+                <section>
+                	<h2><a href="#" data-service="weed-spraying"><span hidden>Weed spraying</span> <img src="images/icons/weed_spraying.png" alt="Weed Spraying" /></a></h2>
                 </section>
             </article><!-- services -->
             <div id="timer"></div>
