@@ -1,4 +1,6 @@
 (function () {
+
+    //resize mainHeight to be totalHeight - (headerHeight + footerHeight)
     var resizeMain = function (selector) {
         var toBeResized = document.querySelector(selector) || document.querySelector('div[role=main]');
         window.addEventListener('resize', resize);
@@ -8,6 +10,7 @@
         }
         resize();
     }('div[role=main]')
+
 })();
 
  

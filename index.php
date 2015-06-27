@@ -11,7 +11,7 @@
     <header role="banner">
         <div class="container">
             <div class="pic">
-                <h1><a href=#">Landscaping APP</a></h1>
+                <h1><a href=#">Landscaping APP <em>v:0.0.1</em></a></h1>
             </div><!-- pic -->        
             <nav role="navigation">
                 <ul>

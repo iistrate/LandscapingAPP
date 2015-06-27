@@ -4,17 +4,30 @@
 header[role=banner] {
     @extend .padding;
     @include clearfix;
+    @include pad(.2,.2);
     h1 {
         float: left;
         a {
             text-decoration: none;
             color: $light;
         }
+        em {
+            margin: 5px 5px 0 0;
+            font-size: $small;
+            display: block;
+            font-weight: 300;
+            text-align: right;
+            color:$gray;
+        }
     }
     nav {
+        float: right;
         li {
             margin-left: 20px;
             float: left;
+            &:last-child {
+                @include last;
+            }
             a {
                 @include button("simple", "push", 5px, 1rem, $red);
             }

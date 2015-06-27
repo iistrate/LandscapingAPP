@@ -2,13 +2,18 @@
     *Main Content
 */
 div[role=main] {
-    padding:70px 0;
+    @include display-flex;
+    align-items:center;
     background-color: $light;
     h1 {
+        margin-bottom: 50px;
         font-size: 30px;
         text-align: center;
         font-weight: 400;
         color:$dark;
+    }
+    .container {
+        @include animation(appear 1s ease-in-out);
     }
 }
 .login {

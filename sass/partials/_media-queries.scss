@@ -17,8 +17,7 @@
  * 1024
  */
 @include mediaQ($L) {
-
-
+    
 }
 /*
  * Custom 900
@@ -31,18 +30,43 @@
  * 768
  */
 @include mediaQ($M) {
-
+    header[role=banner] {
+        h1 {
+            text-align: center;
+            float: none;
+        }
+        nav {
+            text-align: center;
+            float: none;
+        }
+        ul {
+            display: inline-block;
+            li:first-child {
+                margin-left: 0;
+            }
+        }
+    }
+    div[role=main] {
+        h1 {
+            font-size: 25px;
+            line-height: 30px;
+        }
+    }
 }
 /*
  * 660
  */
 
 @include mediaQ($C2) {
-
+    h1 {
+        font-weight: 400;
+    }
 } 
 /*
  * 480
  */
 @include mediaQ($S) {
-
+    h1 {
+        font-size: 36px;
+    }
 }
