@@ -15,7 +15,7 @@
             </div><!-- pic -->        
             <nav role="navigation">
                 <ul>
-                    <li><a href="work.php">Work</a></li>
+                    <li><a href="work.php" class="selected">Work</a></li>
                     <li><a href="overview.php">Overview</a></li>
                 </ul>
             </nav><!-- menu -->
@@ -23,10 +23,22 @@
     </header>
     <div role="main">
         <div class="container">
-            <h1>Howdy Stranger, please login so we can get you started!</h1>
-            <div class="login">
-                <a href="#">Login with Facebook</a>
-            </div><!-- login -->
+            <article class="services">
+                <h1>Pick Service:</h1>
+                <section data-service="plant-trimming">
+                	<h2><a href="#"><span hidden>Plant trimming</span> <img src="images/icons/plant_trimming.png" alt="Plant Trimming" /></a></h2>
+                </section>
+                <section data-service="garbage-pickup">
+                	<h2><a href="#"><span hidden>Leaf and garbage pickup</span> <img src="images/icons/garbage_pickup.png" alt="Garbage and Leaf Picku[" /></a></h2>
+                </section>
+                <section data-service="dead-plant-replacement">
+                	<h2><a href="#"><span hidden>Dead plant replacement</span> <img src="images/icons/dead_plant_replacement.png" alt="Dead Plant Replacement" /></a></h2>
+                </section>
+                <section data-service="weed-spraying">
+                	<h2><a href="#"><span hidden>Weed spraying</span> <img src="images/icons/weed_spraying.png" alt="Weed Spraying" /></a></h2>
+                </section>
+            </article><!-- services -->
+            <div id="timer"></div>
         </div><!-- container -->
     </div><!-- role main -->
     <footer role="contentinfo">

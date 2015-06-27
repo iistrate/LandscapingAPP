@@ -30,6 +30,9 @@ header[role=banner] {
             }
             a {
                 @include button("simple", "push", 5px, 1rem, $red);
+                &.selected {
+                    @include button("simple", "push", 5px, 1rem, $darkblue);
+                }
             }
         }
         float: right;

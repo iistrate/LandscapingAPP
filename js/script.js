@@ -11,6 +11,11 @@
         resize();
     }('div[role=main]')
 
+    var timer = function (selector) {
+        //link nav
+
+    }
+
 })();
 
  

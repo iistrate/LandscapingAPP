@@ -9,7 +9,7 @@ $susy: (
 	columns: 12,
 	container: 960px,
 	gutters: 1/4,
-	gutter-position: outside,
+	gutter-position: inside,
     global-box-sizing: border-box
 	//debug: (image: show)
 );
@@ -49,6 +49,13 @@ $C3: 85.5em; // 1368
 // support
 $legacy-support-for-ie: true;
 
+
+/*
+ *   Sprites
+*/
+//@import "/icons/*.png";
+
+
 /*
  * Extends
  */
@@ -83,6 +90,12 @@ $legacy-support-for-ie: true;
   display:block;
   overflow:hidden;
 }//giveLayout
+
+%responsive {
+    max-width:100%;
+    min-width:100%;
+    width:100%;
+}//responsive
 
 /*
  * Mixins

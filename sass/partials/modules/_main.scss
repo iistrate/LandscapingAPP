@@ -13,6 +13,7 @@ div[role=main] {
         color:$dark;
     }
     .container {
+        width: 100%;
         @include animation(appear 1s ease-in-out);
     }
 }
@@ -20,5 +21,28 @@ div[role=main] {
     text-align: center;
     a {
         @include button("simple", "push", 5px, 1.2rem, $blue);
+    }
+}
+.services {
+    section {
+        overflow: hidden;
+        @include span(3);
+        @for $i from 1 through length($menu) {
+            &:nth-child(#{$i+1}) {
+                background-color: nth($menu, $i);
+            }
+        }
+        &:last {
+            @include last;
+        }
+        img {
+            padding:20%;
+            @extend %responsive;
+        }
+        &:hover {
+            @include transform(scale(1.1));
+            z-index:9999;
+            position: relative;
+        }
     }
 }
