@@ -2,12 +2,13 @@
     *Main Content
 */
 div[role=main] {
+    @extend .padding;
     @include display-flex;
     align-items:center;
     background-color: $light;
     h1 {
         margin-bottom: 50px;
-        font-size: 30px;
+        font-size: 35px;
         text-align: center;
         font-weight: 400;
         color:$dark;
@@ -24,11 +25,15 @@ div[role=main] {
     }
 }
 .services {
+    @include clearfix;
+    div {
+        @include clearfix;
+    }
     section {
         overflow: hidden;
         @include span(3);
         @for $i from 1 through length($menu) {
-            &:nth-child(#{$i+1}) {
+            &:nth-child(#{$i}) {
                 background-color: nth($menu, $i);
             }
         }
@@ -39,7 +44,7 @@ div[role=main] {
             padding:20%;
             @extend %responsive;
         }
-        &:hover {
+        &:hover:not(.active) {
             @include transform(scale(1.1));
             z-index:9999;
             position: relative;
@@ -48,5 +53,24 @@ div[role=main] {
             display: block;
             overflow: hidden;
         }
+        &[hidden] {
+            display: none;
+        }
+        &.active {
+            margin-left:auto;
+            margin-right:auto;
+            background-color: $dark;
+            float: none;
+        }
+    }
+}
+
+#timer {
+    padding:50px 0;
+    display: block;
+    text-align: center;
+    p {
+        font-size: 60px;
+        display: inline-block;
     }
 }

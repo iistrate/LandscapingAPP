@@ -6,14 +6,25 @@
         window.addEventListener('resize', resize);
         function resize () {
             var height = window.innerHeight - (document.querySelector('header[role=banner]').clientHeight + document.querySelector('footer[role=contentinfo]').clientHeight);
-            toBeResized.style.height = height + 'px';
+            toBeResized.style.height = height > toBeResized.clientHeight ? height + 'px' : '';
         }
         resize();
     }('div[role=main]')
 
-    var Timer = function (selector) {
+    Services = {
+        "garbage-pickup": "Leaf and Garbage Pickup",
+        "plant-trimming": "Plant Trimming",
+        "dead-plant-replacement": "Dead Plant Replacement",
+        "weed-spraying": "Weed Spraying",
+    }
+
+    var Timer = function (selector, helpers) {
+
+        helperFunctions = helpers || null;
+
         timerElement = document.querySelector("#timer");
         serviceTimed = '';
+
         duration = {
             hours: 0,
             minutes: 0,
@@ -32,6 +43,11 @@
                     clearTimer();
                     //get service
                     serviceTimed = e.target.parentNode.dataset['service'];
+
+                    //hide others, create animation
+                    helperFunctions.addClass(e.target.parentNode.parentNode.parentNode, 'active');
+                    clearServices();
+
                     //start timer
                     startTimer();
                     e.preventDefault();
@@ -40,9 +56,20 @@
         }();
         //end link nav
 
+        function clearServices() {
+            var sectionElements = document.querySelectorAll('.services section:not(.active)');
+            for (var i = 0, j = sectionElements.length; i < j; i++) {
+                sectionElements[i].setAttribute('hidden', '');
+            }
+            var activeElement = document.querySelector('.services .active');
+            activeElement.parentNode.style.backgroundColor = 'black';
+            activeElement.parentNode.previousElementSibling.textContent = Services[serviceTimed];
+        }
+
         //start the timer
         function startTimer() {
-            timeHandler = setInterval(updateTimer, 10);
+            var timerElement = document.getElementById('timer').innerHTML = '<p>00:00:00</p>';
+            timeHandler = setInterval(updateTimer, 1000);
         }
 
         function updateTimer(time) {
@@ -87,8 +114,31 @@
         
     } //end timer class
 
-    serviceTimer = typeof serviceTimer != 'undefined' ? serviceTimer : new Timer("#timer");
+    //my little helpers
+    this.helpers = {
+            //helpers
+        addClass: function (node, newClass) {
+            //get current classes
+            var classes = node.className;
+            //add the new class
+            classes += ' ' + newClass;
+            node.className = classes;
+        },
+        removeClass : function (node, removeClass) {
+            //get current class/es
+            var classes = node.className;
+            //split it at " "
+            var classArray = classes.split(" ");
+            //get index
+            var removeIndex = classArray.indexOf(removeClass);
+            //delete from index
+            classArray.splice(removeIndex, 1);
+            //re create string and add it as a class name
+            node.className = classArray.join(" ");
+        }
+    }
 
+    serviceTimer = typeof serviceTimer != 'undefined' ? serviceTimer : new Timer("#timer", this.helpers);
 
 })();
 
