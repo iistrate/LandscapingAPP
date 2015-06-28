@@ -1,10 +1,20 @@
 (function () {
 
+    var notSuported = function (selector) {
+        var element = document.querySelector(selector);
+        if (element) {
+            element.addEventListener('click', function (e) {
+                element.textContent = 'Not supported in v0.0.1';
+                e.preventDefault();
+            }, false);
+        }
+    }('.login a');
+
     //resize mainHeight to be totalHeight - (headerHeight + footerHeight)
     var resizeMain = function (selector) {
         var toBeResized = document.querySelector(selector);
         if (toBeResized) {
-            window.addEventListener('resize', resize);
+            window.addEventListener('resize', this.resize);
             function resize() {
                 var height = window.innerHeight - (document.querySelector('header[role=banner]').clientHeight + document.querySelector('footer[role=contentinfo]').clientHeight);
                 toBeResized.style.height = height > toBeResized.clientHeight ? height + 'px' : toBeResized.clientHeight + 'px';
@@ -20,19 +30,44 @@
         "weed-spraying": "Weed Spraying",
     }
 
+    ////populate portfolio
+    //new function () {
+    //    var xhr = new Xhr('GET', 'data/portfolio.json');
+    //    //wait for the response
+    //    setTimeout(function () {
+    //        var html = "";
+    //        items = JSON.parse(xhr.getResponse());
+    //        for (i in items) {
+    //            html += "<div class='item'>\
+    //                    <figure><img src='images/" + items[i]['imageURL'] + "'</figure>" +
+    //                        "<div class='info'><dl><dt>Tech:</dt><dd>" + items[i]['tech'] + "</dd><dt>Goodies:</dt>" +
+    //                        "<dd>" + items[i]['goodies'] + "</dd><dt>Browsers:</dt><dd>" + items[i]['browsers'] + "</dd></dl></div>" +
+    //                    "</div>";
+    //        }
+    //        document.querySelector("#portfolio .items").innerHTML = html;
+    //        //start slider
+    //        portfolioSlider = new Slider();
+    //    }, 500);
+    //}
 
+    var pictures = function () {
+        //select all before and after inputs
+        var inputButtons = document.querySelectorAll('#activities input');
 
-    //var pictures = function () {
-    //    //select all before and after inputs
-    //    var inputButtons = document.querySelectorAll('#activities input');
-    //    //add on change events
-    //    for (counter in inputButtons) {
-    //        inputButtons[counter].addEventListener('change', upload, false);
-    //    }
-    //    function upload(e) {
-    //        console.log("DSAsdadsa");
-    //    }
-    //}()
+        //add on change events
+        for (var i = 0, j = inputButtons.length; i < j; i++) {
+            inputButtons[i].addEventListener('change', upload, false);
+        }
+        function upload(e) {
+            var fileToLoad = e.target.files[0];
+            var reader = new FileReader();
+            reader.onload = function (fileReadEvent) {
+                e.target.parentNode.parentNode.firstElementChild.src = fileReadEvent.target.result
+            }
+            //read only first file
+            reader.readAsDataURL(fileToLoad);
+        }
+    }()
 
     var Accordion = function (selector) {
         //get sections
