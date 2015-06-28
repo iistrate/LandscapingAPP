@@ -61,6 +61,10 @@ div[role=main] {
             margin-right:auto;
             background-color: $dark;
             float: none;
+            @include border-radius(5px);
+            img {
+                padding:15%;
+            }
         }
     }
 }

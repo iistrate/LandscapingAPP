@@ -6,7 +6,7 @@
         window.addEventListener('resize', resize);
         function resize () {
             var height = window.innerHeight - (document.querySelector('header[role=banner]').clientHeight + document.querySelector('footer[role=contentinfo]').clientHeight);
-            toBeResized.style.height = height > toBeResized.clientHeight ? height + 'px' : '';
+            toBeResized.style.height = height > toBeResized.clientHeight ? height + 'px' : toBeResized.clientHeight + 'px';
         }
         resize();
     }('div[role=main]')
@@ -31,30 +31,47 @@
             seconds: 0
         };
         timeHandler = '';
+        started = false;
+        paused = false;
 
         //link nav
         this.linkNav = function() {
 
             var serviceNav = document.querySelectorAll('.services a');
-
             for (var i = 0, j = serviceNav.length; i < j; i++) {
                 serviceNav[i].addEventListener('click', function (e) {
-                    //clear timer
-                    clearTimer();
-                    //get service
-                    serviceTimed = e.target.parentNode.dataset['service'];
+                    if (!started) {
+                        //clear timer
+                        clearTimer();
+                        //get service
+                        serviceTimed = e.target.parentNode.dataset['service'];
 
-                    //hide others, create animation
-                    helperFunctions.addClass(e.target.parentNode.parentNode.parentNode, 'active');
-                    clearServices();
-
-                    //start timer
-                    startTimer();
+                        //hide others, create animation
+                        helperFunctions.addClass(e.target.parentNode.parentNode.parentNode, 'active');
+                        clearServices();
+                        started = true;
+                    }
+                    togglePlayPause();
                     e.preventDefault();
                 }, false);
             }
         }();
         //end link nav
+
+        function togglePlayPause() {
+            if (paused) {
+                paused = false;
+                button = 'play';
+                pauseTimer();
+            }
+            else {
+                paused = true;
+                button = 'pause';
+                startTimer();
+            }
+            var activeElement = document.querySelector('.services .active');
+            activeElement.firstElementChild.firstElementChild.lastElementChild.src = 'images/icons/' + button + '.png';
+        }
 
         function clearServices() {
             var sectionElements = document.querySelectorAll('.services section:not(.active)');
@@ -62,14 +79,18 @@
                 sectionElements[i].setAttribute('hidden', '');
             }
             var activeElement = document.querySelector('.services .active');
-            activeElement.parentNode.style.backgroundColor = 'black';
+            activeElement.firstElementChild.firstElementChild.lastElementChild.src = 'images/icons/pause.png';
+            //activeElement.parentNode.style.backgroundColor = 'black';
             activeElement.parentNode.previousElementSibling.textContent = Services[serviceTimed];
         }
 
         //start the timer
         function startTimer() {
-            var timerElement = document.getElementById('timer').innerHTML = '<p>00:00:00</p>';
             timeHandler = setInterval(updateTimer, 1000);
+        }
+        //pause it
+        function pauseTimer() {
+            clearInterval(timeHandler);
         }
 
         function updateTimer(time) {
@@ -101,8 +122,9 @@
         }
 
         function clearTimer() {
+            var timerElement = document.getElementById('timer').innerHTML = '<p>00:00:00</p>';
 
-            //save suration here?
+            //save duration here?
 
             clearInterval(timeHandler);
             duration = {
