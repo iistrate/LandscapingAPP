@@ -78,3 +78,21 @@ div[role=main] {
         display: inline-block;
     }
 }
+
+#activities {
+    section {
+        h2 {
+            padding:5px 15px;
+            font-size: 18px;
+            font-weight: 800;
+            color: $light;
+        }//h2
+        $i: 0;
+        @each $item in plant-trimming, garbage-pickup, dead-plant-replacement, weed-spraying {
+            &.#{$item} {
+                background-color:nth($menu, $i);
+            }
+            $i: $i + 1;
+        }
+    }//section
+}//activities

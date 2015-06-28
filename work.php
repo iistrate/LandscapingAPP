@@ -41,8 +41,35 @@
                 </div>
             </article><!-- services -->
             <div id="timer"></div>
-            <article id="overview">
-                
+            <article id="activities">
+                <section class="plant-trimming">
+                    <h3>Plant Trimming:</h3>
+                    <div class="body">
+                        <div class="before"></div>
+                        <div class="after"></div>
+                    </div><!-- body -->
+                </section><!-- plant trimming -->
+                <section class="garbage-pickup">
+                    <h3>Garbage Pickup:</h3>
+                    <div class="body">
+                        <div class="before"></div>
+                        <div class="after"></div>
+                    </div><!-- body -->
+                </section><!-- plant trimming -->
+                <section class="dead-plant-replacement">
+                    <h3>Dead Plant Replacement:</h3>
+                    <div class="body">
+                        <div class="before"></div>
+                        <div class="after"></div>
+                    </div><!-- body -->
+                </section><!-- plant trimming -->
+                <section class="weed-spraying">
+                    <h3>Weed Spraying:</h3>
+                    <div class="body">
+                        <div class="before"></div>
+                        <div class="after"></div>
+                    </div><!-- body -->
+                </section><!-- plant trimming -->                
             </article><!-- overview -->
         </div><!-- container -->
     </div><!-- role main -->
