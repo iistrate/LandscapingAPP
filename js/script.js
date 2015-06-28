@@ -2,14 +2,16 @@
 
     //resize mainHeight to be totalHeight - (headerHeight + footerHeight)
     var resizeMain = function (selector) {
-        var toBeResized = document.querySelector(selector) || document.querySelector('div[role=main]');
-        window.addEventListener('resize', resize);
-        function resize () {
-            var height = window.innerHeight - (document.querySelector('header[role=banner]').clientHeight + document.querySelector('footer[role=contentinfo]').clientHeight);
-            toBeResized.style.height = height > toBeResized.clientHeight ? height + 'px' : toBeResized.clientHeight + 'px';
+        var toBeResized = document.querySelector(selector);
+        if (toBeResized) {
+            window.addEventListener('resize', resize);
+            function resize() {
+                var height = window.innerHeight - (document.querySelector('header[role=banner]').clientHeight + document.querySelector('footer[role=contentinfo]').clientHeight);
+                toBeResized.style.height = height > toBeResized.clientHeight ? height + 'px' : toBeResized.clientHeight + 'px';
+            }
+            resize();
         }
-        resize();
-    }('div[role=main]')
+    }('div[role=main].stretch')
 
     Services = {
         "garbage-pickup": "Leaf and Garbage Pickup",
@@ -17,6 +19,48 @@
         "dead-plant-replacement": "Dead Plant Replacement",
         "weed-spraying": "Weed Spraying",
     }
+
+
+
+    //var pictures = function () {
+    //    //select all before and after inputs
+    //    var inputButtons = document.querySelectorAll('#activities input');
+    //    //add on change events
+    //    for (counter in inputButtons) {
+    //        inputButtons[counter].addEventListener('change', upload, false);
+    //    }
+    //    function upload(e) {
+    //        console.log("DSAsdadsa");
+    //    }
+    //}()
+
+    var Accordion = function (selector) {
+        //get sections
+        sectionElements = document.querySelectorAll(selector);
+        //link sections
+        for (var i = 0, j = sectionElements.length; i < j; i++) {
+            sectionElements[i].parentElement.addEventListener('click', this.toggle, false);
+        }
+    }
+
+    Accordion.prototype.toggle = function (e) {
+        var toBeopened = typeof e.target != 'undefined' ? e.target : document.querySelector(e).firstElementChild;
+        if (e.target) {
+            if (e.target.tagName != 'H3') {
+                return;
+            }
+        }
+        //check which section is expanded; close it
+        for (var i = 0, j = sectionElements.length; i < j; i++) {
+            if (helperFunctions.hasClass(sectionElements[i].parentElement,'expanded') != -1) {
+                helperFunctions.removeClass(sectionElements[i].parentElement, 'expanded');
+            }
+        }
+        helperFunctions.addClass(toBeopened.parentElement, 'expanded');
+    }
+
+    var accordion = typeof accordion != 'undefined' ? accordion : new Accordion('#activities section h3');
+
 
     var Timer = function (selector, helpers) {
 
@@ -44,10 +88,12 @@
                         //clear timer
                         clearTimer();
                         //get service
-                        serviceTimed = e.target.parentNode.dataset['service'];
-
+                        serviceTimed = e.target.parentNode.dataset['service'] ? e.target.parentNode.dataset['service'] : e.target.parentNode.getAttribute('service');
                         //hide others, create animation
                         helperFunctions.addClass(e.target.parentNode.parentNode.parentNode, 'active');
+                        //open accordion
+                        accordion.toggle('.'+e.target.parentNode.dataset['service']);
+                        //
                         clearServices();
                         started = true;
                     }
@@ -157,11 +203,112 @@
             classArray.splice(removeIndex, 1);
             //re create string and add it as a class name
             node.className = classArray.join(" ");
+        },
+        hasClass: function (node, classname) {
+            //get current class/es
+            var classes = node.className;
+            //split it at " "
+            var classArray = classes.split(" ");
+            //get index
+            var index = classArray.indexOf(classname);
+            return index;
         }
+    }
+
+    //AJA*
+    var Xhr = function (type, url, send) {
+
+        var m_xhr = createXhr();
+        var m_responseContent = null;
+        var m_error = null;
+        var m_send = send || null
+        var m_url = url;
+        var m_type = type || 'GET';
+
+        //create our xhr
+        function createXhr() {
+            try {
+                xmlHttp = new XMLHttpRequest()
+            }
+            catch (e) {
+                try {
+                    xmlHttp = new ActiveXObject('Windows.XMLHttp');
+                }
+                catch (e) {
+                    m_error = e.message;
+                }
+            }
+            return xmlHttp;
+        }
+
+        //open the file
+        var open = function () {
+            if (m_xhr) {
+                var REQUEST_FINISHED = 4;
+                var OK = 200;
+                //always async, otherwise what's the point
+                m_xhr.open(m_type, m_url, true);
+                //when on ready state change we know it's time for action
+                m_xhr.onreadystatechange = function () {
+                    //if we could open the file
+                    if (m_xhr.readyState == REQUEST_FINISHED) {
+                        if (m_xhr.status == OK) {
+                            //we can try to read response
+                            try {
+                                //figure out what type of response we have
+                                var header = m_xhr.getResponseHeader("Content-Type");
+                                switch (header) {
+                                    case "application/json":
+                                        m_responseContent = m_xhr.responseText;
+                                        break;
+                                    case "application/xml":
+                                        m_responseContent = m_xhr.responseXML;
+                                        break;
+                                        //default is just plain text
+                                    default:
+                                        m_responseContent = m_xhr.responseText;
+                                        break;
+                                }//switch
+                            }//try
+                            catch (e) {
+                                m_error = e.message;
+                            }//catch
+                        }//status
+                    }//ready status
+                }//onreadystate
+                if (!m_error) {
+                    //send data, by default it is null
+                    m_xhr.send(m_send);
+                }//error
+            }//if xhr
+        }//open
+
+        this.getResponse = function () {
+            return m_responseContent;
+        }
+        //do the deed
+        open();
     }
 
     serviceTimer = typeof serviceTimer != 'undefined' ? serviceTimer : new Timer("#timer", this.helpers);
 
+    var cacheImages = function(arrayOfImages) {
+        //create hidden div
+        var hidden = document.createElement("div");
+        //hide it
+        hidden.style.display = 'none';
+        //for each image
+        for (imageIterator in arrayOfImages) {
+            //create it
+            var newImage = document.createElement('img');
+            //point to to the right image
+            newImage.src = arrayOfImages[imageIterator];
+            //append it to hidden
+            hidden.appendChild(newImage);
+        }
+        //append hidden to body
+        document.body.appendChild(hidden);
+    } (['images/icons/dead_plant_replacement.png', 'images/icons/plant_trimming.png', 'images/icons/weed_spraying.png', 'images/icons/garbage_pickup.png', 'images/icons/pause.png', 'images/icons/play.png']);
 })();
 
  

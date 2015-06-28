@@ -5,8 +5,10 @@ header[role=banner] {
     @extend .padding;
     @include clearfix;
     @include pad(.2,.2);
+    text-align: center;
     h1 {
         float: left;
+        display: inline-block;
         a {
             text-decoration: none;
             color: $light;

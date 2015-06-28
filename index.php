@@ -21,7 +21,7 @@
             </nav><!-- menu -->
         </div><!-- container -->
     </header>
-    <div role="main">
+    <div role="main" class="stretch">
         <div class="container">
             <h1>Howdy Stranger, please login so we can get you started!</h1>
             <div class="login">

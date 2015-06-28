@@ -45,29 +45,53 @@
                 <section class="plant-trimming">
                     <h3>Plant Trimming:</h3>
                     <div class="body">
-                        <div class="before"></div>
-                        <div class="after"></div>
+                        <figure class="before">
+                            <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=300%C3%97250&w=300&h=250" alt="placeholder" />
+                            <figcaption>Before pic <input type="file" accept="image/*;capture=camera" name="before" /></figcaption>                            
+                        </figure>
+                        <figure class="after">
+                            <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=300%C3%97250&w=300&h=250" alt="placeholder" />
+                            <figcaption>After pic <input  type="file" accept="image/*;capture=camera" name="after" /></figcaption>                            
+                        </figure>                  
                     </div><!-- body -->
                 </section><!-- plant trimming -->
                 <section class="garbage-pickup">
                     <h3>Garbage Pickup:</h3>
                     <div class="body">
-                        <div class="before"></div>
-                        <div class="after"></div>
+                        <figure class="before">
+                            <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=300%C3%97250&w=300&h=250" alt="placeholder" />
+                            <figcaption>Before pic <input type="file" accept="image/*;capture=camera" name="before" /></figcaption>                            
+                        </figure>
+                        <figure class="after">
+                            <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=300%C3%97250&w=300&h=250" alt="placeholder" />
+                            <figcaption>After pic <input  type="file" accept="image/*;capture=camera" name="after" /></figcaption>                            
+                        </figure>                     
                     </div><!-- body -->
                 </section><!-- plant trimming -->
                 <section class="dead-plant-replacement">
                     <h3>Dead Plant Replacement:</h3>
                     <div class="body">
-                        <div class="before"></div>
-                        <div class="after"></div>
+                        <figure class="before">
+                            <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=300%C3%97250&w=300&h=250" alt="placeholder" />
+                            <figcaption>Before pic <input type="file" accept="image/*;capture=camera" name="before" /></figcaption>                            
+                        </figure>
+                        <figure class="after">
+                            <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=300%C3%97250&w=300&h=250" alt="placeholder" />
+                            <figcaption>After pic <input  type="file" accept="image/*;capture=camera" name="after" /></figcaption>                            
+                        </figure>                  
                     </div><!-- body -->
                 </section><!-- plant trimming -->
                 <section class="weed-spraying">
                     <h3>Weed Spraying:</h3>
                     <div class="body">
-                        <div class="before"></div>
-                        <div class="after"></div>
+                        <figure class="before">
+                            <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=300%C3%97250&w=300&h=250" alt="placeholder" />
+                            <figcaption>Before pic <input type="file" accept="image/*;capture=camera" name="before" /></figcaption>                            
+                        </figure>
+                        <figure class="after">
+                            <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=300%C3%97250&w=300&h=250" alt="placeholder" />
+                            <figcaption>After pic <input  type="file" accept="image/*;capture=camera" name="after" /></figcaption>                            
+                        </figure>                    
                     </div><!-- body -->
                 </section><!-- plant trimming -->                
             </article><!-- overview -->

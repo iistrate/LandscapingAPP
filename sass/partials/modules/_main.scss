@@ -80,19 +80,76 @@ div[role=main] {
 }
 
 #activities {
+    overflow: hidden;
+    @include border-radius(5px);
     section {
-        h2 {
-            padding:5px 15px;
-            font-size: 18px;
+        h3 {
+            padding:20px 30px;
+            font-size: 20px;
             font-weight: 800;
             color: $light;
-        }//h2
-        $i: 0;
+            cursor: pointer;
+        }//he
+        $i: 1;
         @each $item in plant-trimming, garbage-pickup, dead-plant-replacement, weed-spraying {
             &.#{$item} {
-                background-color:nth($menu, $i);
+                $color: nth($menu, $i);
+                h3 {
+                    background-color:$color;
+                    &.active, &:hover {
+                        background-color: lighten($color, 5%);
+                    }
+                }
+                .body {
+                    border-color:lighten($color, 30%);
+                }
             }
             $i: $i + 1;
+        }//each
+        &:not(.expanded) {
+            .body {
+                height: 0;
+                overflow: hidden;
+                padding: 0;
+                opacity:0;
+                border:0;
+            }
+        }   
+        .body {
+            padding: 10px 20px;
+            border:1px solid;
+            border-top:1px dashed;
+            opacity:1;
+        }
+        figure {
+            padding:10px 10px 15px;
+            margin-right: 10px;
+            display: inline-block;
+            background-color: $light;
+            border:1px solid $gray;
+            img {
+                margin-bottom: 10px;
+                display: block;
+            }
+        }
+        figcaption {
+            width:300px;
+            height:48px;
+            padding:5px 10px;
+            position:relative;
+            display: block;
+            background-color: $light;
+            border:1px solid $gray;
+            text-align: center;
+            @include button("simple", "push", 5px, 1rem, $darkblue);
+            input {
+                width:300px;
+                height:50px;
+                position:absolute;
+                left:0;
+                top:0;
+                opacity:0;
+            }
         }
     }//section
 }//activities
