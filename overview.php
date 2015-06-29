@@ -27,13 +27,15 @@
                 <h1>Work done view:</h1>
                 <section class="pie-chart-container">
                 <!-- hidden  custom css3 pie I created, not dynamic so trash it-->
-                    <div class="pie-chart" >
-                        <div class="time-slice" data-size='30' data-type='plant-trimming' style=""></div><!-- time slice -->
-                        <div class="time-slice" data-size='10' data-type='garbage-pickup'></div><!-- time slice -->
-                        <div class="time-slice" data-size='20' data-type='dead-plant-replacement'></div><!-- time slice -->
-                        <div class="time-slice" data-size='40' data-type='weed-spraying'></div><!-- time slice -->
-                    </div><!-- pie chart -->                    
-                <!-- end hidden -->                    
+<!--                     <div class="pie-chart" hidden>
+                            <div class="time-slice" data-size='30' data-type='plant-trimming' style=""></div>
+                            <div class="time-slice" data-size='10' data-type='garbage-pickup'></div>
+                            <div class="time-slice" data-size='20' data-type='dead-plant-replacement'></div>
+                            <div class="time-slice" data-size='40' data-type='weed-spraying'></div> -->
+<!--                     </div> -->
+                    <!-- pie chart -->                    
+                <!-- end hidden -->
+                <div id="pieChart"></div><!-- pie chart -->
                 </section><!-- pie chart container -->
             </article><!-- view -->
         </div><!-- container -->

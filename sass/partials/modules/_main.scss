@@ -166,7 +166,7 @@ div[role=main] {
   clip-path: $clip;
 }
 
-.pie-chart-container {
+/*.pie-chart-container {
     text-align: center;
     .pie-chart {
         width:300px;
@@ -186,6 +186,35 @@ div[role=main] {
         z-index:9;
         $size: 20%;
         @include clip-path(polygon(40% 50%, 0% 100%, $size 100%));
+    }
+}*/
+.pie-chart-container {
+    text-align: center;
+    position: relative;
+}
+#pieChart {
+    display: inline-block;
+    ol {
+        margin-top: 40px;
+        text-align:left;
+        li {
+            margin-bottom: 10px;
+            &:before {
+                width:10px;
+                height:10px;
+                display: block;
+                content:' ';
+                float: left;
+                position:relative;
+                left:-10px;
+                top:4px;
+            }
+            @for $i from 1 through length($menu) {
+                &:nth-child(#{$i}):before {
+                    background-color: nth($menu, $i);
+                }
+            }            
+        }
     }
 }
 

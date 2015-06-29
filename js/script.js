@@ -338,7 +338,59 @@
         }
         //append hidden to body
         document.body.appendChild(hidden);
-    } (['images/icons/dead_plant_replacement.png', 'images/icons/plant_trimming.png', 'images/icons/weed_spraying.png', 'images/icons/garbage_pickup.png', 'images/icons/pause.png', 'images/icons/play.png']);
+    }(['images/icons/dead_plant_replacement.png', 'images/icons/plant_trimming.png', 'images/icons/weed_spraying.png', 'images/icons/garbage_pickup.png', 'images/icons/pause.png', 'images/icons/play.png']);
+
+
+    //Pie Chart with D3
+    var pieChart = function (selector, width, height) {
+        var width = width, height = height, radius = width / 2;
+        var colors = ['#e74c3c', '#2980b9', '#3498db', '#2c3e50'];
+
+        var pieData = [
+            {
+                service: 'Leaf and Garbage Pickup',
+                timeSpent: 30
+            },
+            {
+                service: 'Plant Trimming',
+                timeSpent: 20
+            },
+            {
+                service: 'Dead Plant Replacement',
+                timeSpent: 10
+            },
+            {
+                service: 'Weed Spraying',
+                timeSpent: 40
+            }
+        ]
+
+        var pie = d3.layout.pie()
+        .value(function (d) {
+            return d.timeSpent;
+        });
+
+        var arc = d3.svg.arc()
+        .outerRadius(radius);
+
+        var myChart = d3.select(selector).append('svg')
+            .attr('width', width)
+            .attr('height', height)
+            .append('g')
+            .attr('transform', 'translate(' + (width - radius) + ',' + (height - radius) + ')')
+            .selectAll('path').data(pie(pieData))
+            .enter().append('path')
+            .attr('fill', function (d, i) {
+                return colors[i];
+            })
+            .attr('d', arc);
+
+        var legend = d3.select(selector).append('ol');
+        for (counter in pieData) {
+            legend.append('li').text(pieData[counter].service);
+        }
+
+    }('#pieChart', 300, 300);
 })();
 
  
