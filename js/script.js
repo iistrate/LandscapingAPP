@@ -41,6 +41,9 @@
         function upload(e) {
             var fileToLoad = e.target.files[0];
             var fileType = e.target.name;
+            var fileSource = 'service';
+            var serviceName = e.target.parentNode.parentNode.parentNode.parentNode.className.split(' ')[0];
+
             var reader = new FileReader();
             reader.onload = function (fileReadEvent) {
                 e.target.parentNode.parentNode.firstElementChild.src = fileReadEvent.target.result
@@ -50,9 +53,10 @@
             //create form data
             var formData = new FormData();
             formData.append(fileType, fileToLoad);
-            console.log(fileType);
+            formData.append(fileSource, serviceName);
             //xhr
             var xhr = new Xhr('POST', 'fileHandler.php', formData);
+            //upload file
             setTimeout(function () {
                 var response = xhr.getResponse();
                 console.log(response);

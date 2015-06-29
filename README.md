@@ -1,2 +1,2 @@
 # LandscapingAPP
-Landscaping APP, JavaScript, HTML5, CSS3, AJAX, PHP, MySQL
+Landscaping APP: SASS, Compass, Susy 2, JavaScript, HTML5, CSS3, AJAX, PHP
