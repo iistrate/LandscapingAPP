@@ -30,26 +30,6 @@
         "weed-spraying": "Weed Spraying",
     }
 
-    ////populate portfolio
-    //new function () {
-    //    var xhr = new Xhr('GET', 'data/portfolio.json');
-    //    //wait for the response
-    //    setTimeout(function () {
-    //        var html = "";
-    //        items = JSON.parse(xhr.getResponse());
-    //        for (i in items) {
-    //            html += "<div class='item'>\
-    //                    <figure><img src='images/" + items[i]['imageURL'] + "'</figure>" +
-    //                        "<div class='info'><dl><dt>Tech:</dt><dd>" + items[i]['tech'] + "</dd><dt>Goodies:</dt>" +
-    //                        "<dd>" + items[i]['goodies'] + "</dd><dt>Browsers:</dt><dd>" + items[i]['browsers'] + "</dd></dl></div>" +
-    //                    "</div>";
-    //        }
-    //        document.querySelector("#portfolio .items").innerHTML = html;
-    //        //start slider
-    //        portfolioSlider = new Slider();
-    //    }, 500);
-    //}
-
     var pictures = function () {
         //select all before and after inputs
         var inputButtons = document.querySelectorAll('#activities input');
@@ -60,12 +40,23 @@
         }
         function upload(e) {
             var fileToLoad = e.target.files[0];
+            var fileType = e.target.name;
             var reader = new FileReader();
             reader.onload = function (fileReadEvent) {
                 e.target.parentNode.parentNode.firstElementChild.src = fileReadEvent.target.result
             }
             //read only first file
             reader.readAsDataURL(fileToLoad);
+            //create form data
+            var formData = new FormData();
+            formData.append(fileType, fileToLoad);
+            console.log(fileType);
+            //xhr
+            var xhr = new Xhr('POST', 'fileHandler.php', formData);
+            setTimeout(function () {
+                var response = xhr.getResponse();
+                console.log(response);
+            }, 500);
         }
     }()
 
