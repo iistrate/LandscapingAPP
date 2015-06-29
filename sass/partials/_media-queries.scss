@@ -17,7 +17,9 @@
  * 1024
  */
 @include mediaQ($L) {
-    
+    section#info {
+        padding-left:20px;
+    }
 }
 /*
  * Custom 900

@@ -217,5 +217,34 @@ div[role=main] {
         }
     }
 }
+section#info {
+    padding:50px 0;
+    h2 {
+        margin-bottom: 30px;
+    }
+    table {
+        margin-bottom: 20px;
+    }
+    td {
+        padding:10px;
+        padding-left:0;
+        font-weight: 800;
+        &:first-child {
+            width: 50px;
+        }
+    }
+    blockquote {
+        padding:15px 30px;
+        border-left:3px solid darken($gray, 30%);
+        p {
+            margin-bottom: 10px;
+        }
+        cite {
+            font-weight: 800;
+            display: block;
+            font-style: italic;
+        }
+    }
+}
 
 //do animation with rotate

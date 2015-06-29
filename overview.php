@@ -35,8 +35,30 @@
 <!--                     </div> -->
                     <!-- pie chart -->                    
                 <!-- end hidden -->
-                <div id="pieChart"></div><!-- pie chart -->
+                    <div id="pieChart"></div><!-- pie chart -->
                 </section><!-- pie chart container -->
+                <section id="info">
+                    <!-- Tabular data so Tabel -->
+                    <table>
+                        <tr>
+                            <td>Date: </td>
+                            <td>15/06/2015</td>
+                        </tr>
+                        <tr>
+                            <td>Billed: </td>
+                            <td>$200</td>
+                        </tr>
+                    </table>
+                    <div class="feedback">
+                        <h2>Job feedback: </h2>
+                        <blockquote>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt distinctio deleniti aliquid non! Doloribus, accusamus architecto sunt temporibus incidunt praesentium!
+                                <cite>- Important client</cite>
+                            </p>
+                        </blockquote>
+                    </div><!-- feedback -->                    
+                </section><!-- info -->
             </article><!-- view -->
         </div><!-- container -->
     </div><!-- role main -->

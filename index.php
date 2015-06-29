@@ -38,6 +38,7 @@
             </div><!-- content -->
         </div><!-- content -->
     </footer><!-- footer -->
-    <script src="js/script.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>    
+    <script src="js/script.js" type="text/javascript"></script>    
 </body>
 </html>
