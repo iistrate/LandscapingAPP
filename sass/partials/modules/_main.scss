@@ -155,3 +155,38 @@ div[role=main] {
         }
     }//section
 }//activities
+#view {
+
+}//view
+
+@mixin clip-path($clip) {
+  -webkit-clip-path: $clip;
+  -moz-clip-path: $clip;
+  -ms-clip-path: $clip;
+  clip-path: $clip;
+}
+
+.pie-chart-container {
+    text-align: center;
+    .pie-chart {
+        width:300px;
+        height:300px;
+        position: relative;
+        display: inline-block;
+        background-color: $dark;
+        @include border-radius(150px);
+        z-index:1;
+        overflow: hidden;
+    }
+    .time-slice {
+        width:300px;
+        height:300px;
+        position:absolute;
+        background-color:red;
+        z-index:9;
+        $size: 20%;
+        @include clip-path(polygon(40% 50%, 0% 100%, $size 100%));
+    }
+}
+
+//do animation with rotate
