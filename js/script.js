@@ -74,19 +74,19 @@
     }
 
     Accordion.prototype.toggle = function (e) {
-        var toBeopened = typeof e.target != 'undefined' ? e.target : document.querySelector(e).firstElementChild;
-        if (e.target) {
-            if (e.target.tagName != 'H3') {
+        var toBeopened = (e.target) ? e.target : (e.srcElement) ? e.srcElement : document.querySelector(e).firstElementChild;
+        if (toBeopened) {
+            if (toBeopened.tagName != 'H3') {
                 return;
             }
-        }
-        //check which section is expanded; close it
-        for (var i = 0, j = sectionElements.length; i < j; i++) {
-            if (helperFunctions.hasClass(sectionElements[i].parentElement,'expanded') != -1) {
-                helperFunctions.removeClass(sectionElements[i].parentElement, 'expanded');
+            //check which section is expanded; close it
+            for (var i = 0, j = sectionElements.length; i < j; i++) {
+                if (helperFunctions.hasClass(sectionElements[i].parentElement, 'expanded') != -1) {
+                    helperFunctions.removeClass(sectionElements[i].parentElement, 'expanded');
+                }
             }
+            helperFunctions.addClass(toBeopened.parentElement, 'expanded');
         }
-        helperFunctions.addClass(toBeopened.parentElement, 'expanded');
     }
 
     var accordion = typeof accordion != 'undefined' ? accordion : new Accordion('#activities section h3');
@@ -118,11 +118,11 @@
                         //clear timer
                         clearTimer();
                         //get service
-                        serviceTimed = e.target.parentNode.dataset['service'] ? e.target.parentNode.dataset['service'] : e.target.parentNode.getAttribute('service');
+                        serviceTimed = e.target.parentNode.getAttribute('data-service');
                         //hide others, create animation
                         helperFunctions.addClass(e.target.parentNode.parentNode.parentNode, 'active');
                         //open accordion
-                        accordion.toggle('.'+e.target.parentNode.dataset['service']);
+                        accordion.toggle('.' + serviceTimed);
                         //
                         clearServices();
                         started = true;
