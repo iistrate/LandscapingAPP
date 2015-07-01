@@ -1,0 +1,250 @@
+﻿/*
+    *Main Content
+*/
+div[role=main] {
+    @extend .padding;
+    @include display-flex;
+    align-items:center;
+    background-color: $light;
+    h1 {
+        margin-bottom: 50px;
+        font-size: 35px;
+        text-align: center;
+        font-weight: 400;
+        color:$dark;
+    }
+    .container {
+        width: 100%;
+        @include animation(appear 1s ease-in-out);
+    }
+}
+.login {
+    text-align: center;
+    a {
+        @include button("simple", "push", 5px, 1.2rem, $blue);
+    }
+}
+.services {
+    @include clearfix;
+    div {
+        @include clearfix;
+    }
+    section {
+        overflow: hidden;
+        @include span(3);
+        @for $i from 1 through length($menu) {
+            &:nth-child(#{$i}) {
+                background-color: nth($menu, $i);
+            }
+        }
+        &:last {
+            @include last;
+        }
+        img {
+            padding:20%;
+            @extend %responsive;
+        }
+        &:hover:not(.active) {
+            @include transform(scale(1.1));
+            z-index:9999;
+            position: relative;
+        }
+        a {
+            display: block;
+            overflow: hidden;
+        }
+        &[hidden] {
+            display: none;
+        }
+        &.active {
+            margin-left:auto;
+            margin-right:auto;
+            background-color: $dark;
+            float: none;
+            @include border-radius(5px);
+            img {
+                padding:15%;
+            }
+        }
+    }
+}
+
+#timer {
+    padding:50px 0;
+    display: block;
+    text-align: center;
+    p {
+        font-size: 60px;
+        display: inline-block;
+    }
+}
+
+#activities {
+    overflow: hidden;
+    @include border-radius(9px);
+    section {
+        h3 {
+            padding:20px 30px;
+            font-size: 20px;
+            font-weight: 800;
+            color: $light;
+            cursor: pointer;
+        }//he
+        $i: 1;
+        @each $item in plant-trimming, garbage-pickup, dead-plant-replacement, weed-spraying {
+            &.#{$item} {
+                $color: nth($menu, $i);
+                h3 {
+                    background-color:$color;
+                    &.active, &:hover {
+                        background-color: lighten($color, 5%);
+                    }
+                }
+                .body {
+                    border-color:lighten($color, 30%);
+                }
+            }
+            $i: $i + 1;
+        }//each
+        &:not(.expanded) {
+            .body {
+                height: 0;
+                overflow: hidden;
+                padding: 0;
+                opacity:0;
+                border:0;
+            }
+        }   
+        .body {
+            padding: 10px 20px;
+            border:1px solid;
+            border-top:1px dashed;
+            opacity:1;
+        }
+        figure {
+            padding:10px 10px 15px;
+            margin-right: 10px;
+            display: inline-block;
+            background-color: $light;
+            border:1px solid $gray;
+            img {
+                width:300px;
+                height:250px;
+                margin-bottom: 10px;
+                display: block;
+            }
+        }
+        figcaption {
+            width:300px;
+            height:48px;
+            padding:5px 10px;
+            position:relative;
+            display: block;
+            background-color: $light;
+            border:1px solid $gray;
+            text-align: center;
+            @include button("simple", "push", 5px, 1rem, $darkblue);
+            input {
+                width:300px;
+                height:50px;
+                position:absolute;
+                left:0;
+                top:0;
+                opacity:0;
+            }
+        }
+    }//section
+}//activities
+#view {
+
+}//view
+
+@mixin clip-path($clip) {
+  -webkit-clip-path: $clip;
+  -moz-clip-path: $clip;
+  -ms-clip-path: $clip;
+  clip-path: $clip;
+}
+
+/*.pie-chart-container {
+    text-align: center;
+    .pie-chart {
+        width:300px;
+        height:300px;
+        position: relative;
+        display: inline-block;
+        background-color: $dark;
+        @include border-radius(150px);
+        z-index:1;
+        overflow: hidden;
+    }
+    .time-slice {
+        width:300px;
+        height:300px;
+        position:absolute;
+        background-color:red;
+        z-index:9;
+        $size: 20%;
+        @include clip-path(polygon(40% 50%, 0% 100%, $size 100%));
+    }
+}*/
+.pie-chart-container {
+    text-align: center;
+    position: relative;
+}
+#pieChart {
+    display: inline-block;
+    ol {
+        margin-top: 40px;
+        text-align:left;
+        li {
+            margin-bottom: 10px;
+            &:before {
+                width:10px;
+                height:10px;
+                display: block;
+                content:' ';
+                float: left;
+                position:relative;
+                left:-10px;
+                top:4px;
+            }
+            @for $i from 1 through length($menu) {
+                &:nth-child(#{$i}):before {
+                    background-color: nth($menu, $i);
+                }
+            }            
+        }
+    }
+}
+section#info {
+    padding:50px 0;
+    h2 {
+        margin-bottom: 30px;
+    }
+    table {
+        margin-bottom: 20px;
+    }
+    td {
+        padding:10px;
+        padding-left:0;
+        font-weight: 800;
+        &:first-child {
+            width: 50px;
+        }
+    }
+    blockquote {
+        padding:15px 30px;
+        border-left:3px solid darken($gray, 30%);
+        p {
+            margin-bottom: 10px;
+        }
+        cite {
+            font-weight: 800;
+            display: block;
+            font-style: italic;
+        }
+    }
+}
+
+//do animation with rotate
