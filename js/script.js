@@ -380,15 +380,16 @@
             .attr('transform', 'translate(' + (width - radius) + ',' + (height - radius) + ')')
             .selectAll('path').data(pie(pieData))
             .enter().append('path')
+            .transition().delay(500)
             .attr('fill', function (d, i) {
                 return colors[i];
             })
             .attr('d', arc);
 
         var legend = d3.select(selector).append('ol');
-        for (counter in pieData) {
-            legend.append('li').text(pieData[counter].service);
-        }
+        legend.selectAll('li').data(pieData).enter()
+        .append('li').text(function (data) { return data.service; })
+      
 
     }('#pieChart', 300, 300);
 })();
